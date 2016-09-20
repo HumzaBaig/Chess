@@ -2,7 +2,9 @@ require_relative 'piece'
 require_relative 'null_piece'
 require 'byebug'
 
+
 class Board
+  attr_accessor :board
 
   def initialize
 
@@ -16,9 +18,9 @@ class Board
     8.times do |row_index|
       8.times do |col_index|
         if pieces.include?(row_index)
-          @board[row_index][col_index] = Piece.new("Piece",[row_index, col_index])
+          @board[row_index][col_index] = Piece.new(" 😂 ",[row_index, col_index])
         else
-          @board[row_index][col_index] = NullPiece.new("NullPiece")
+          @board[row_index][col_index] = NullPiece.new(" N ")
         end
       end
     end
@@ -37,6 +39,10 @@ class Board
   def [](pos)
     row, col = pos
     @board[row][col]
+  end
+
+  def in_bounds?(position)
+    position.all? { |el| el.between?(0,7) }
   end
 
 end

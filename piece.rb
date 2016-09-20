@@ -1,6 +1,7 @@
 # require_relative 'board'
 
 class Piece
+  attr_reader :piece
   def initialize(piece, position)
     @piece = piece
     @pos = position
@@ -19,4 +20,6 @@ class Piece
     row, col = pos
     @pos[row][col]
   end
+
+
 end
