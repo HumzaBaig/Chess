@@ -23,20 +23,21 @@ class Board
     @board = Array.new(8) { Array.new(8) }
     8.times do |row_index|
       8.times do |col_index|
+        color = row_index > 2 ? :light : :dark
         if pieces.include?(row_index)
-          @board[row_index][col_index] = Pawn.new([row_index, col_index])
+          @board[row_index][col_index] = Pawn.new([row_index, col_index], self, color)
         elsif row_index == 0 || row_index == 7
           case col_index
           when 0, 7
-            @board[row_index][col_index] = Rook.new([row_index, col_index])
+            @board[row_index][col_index] = Rook.new([row_index, col_index], self, color)
           when 1, 6
-            @board[row_index][col_index] = Knight.new([row_index, col_index])
+            @board[row_index][col_index] = Knight.new([row_index, col_index], self, color)
           when 2, 5
-            @board[row_index][col_index] = Bishop.new([row_index, col_index])
+            @board[row_index][col_index] = Bishop.new([row_index, col_index], self, color)
           when 3
-            @board[row_index][col_index] = Queen.new([row_index, col_index])
+            @board[row_index][col_index] = Queen.new([row_index, col_index], self, color)
           else
-            @board[row_index][col_index] = King.new([row_index, col_index])
+            @board[row_index][col_index] = King.new([row_index, col_index], self, color)
           end
         else
           @board[row_index][col_index] = NullPiece.instance
@@ -66,4 +67,9 @@ class Board
 
 end
 
-board = Board.new
+
+a = Board.new
+
+b = a[[0,0]]
+
+p b.moves(b.move_dirs)

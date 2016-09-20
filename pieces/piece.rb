@@ -1,10 +1,13 @@
 
-class Piece
-  attr_reader :piece, :white, :black
 
-  def initialize(piece, position)
+class Piece
+  attr_reader :piece, :color, :pos, :board
+  
+  def initialize(piece, position, board, color)
     @piece = piece
     @pos = position
+    @board = board
+    @color = color
   end
 
   def update_position(end_pos)
