@@ -1,7 +1,7 @@
-# require_relative 'board'
 
 class Piece
-  attr_reader :piece
+  attr_reader :piece, :white, :black
+
   def initialize(piece, position)
     @piece = piece
     @pos = position
@@ -21,5 +21,8 @@ class Piece
     @pos[row][col]
   end
 
+  def moves
+
+  end
 
 end

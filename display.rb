@@ -15,8 +15,9 @@ class Display
     i = 0
     while i == 0
       begin
-          display_board
-          @cursor.get_input
+        system "clear"
+        display_board
+        @cursor.get_input
       rescue => e
         puts "WHOA. you're going too far"
       end

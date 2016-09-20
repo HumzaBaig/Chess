@@ -1,5 +1,11 @@
-require_relative 'piece'
-require_relative 'null_piece'
+require_relative 'pieces/pawn'
+require_relative 'pieces/null_piece'
+require_relative 'pieces/bishop'
+require_relative 'pieces/rook'
+require_relative 'pieces/queen'
+require_relative 'pieces/king'
+require_relative 'pieces/knight'
+
 require 'byebug'
 
 
@@ -12,15 +18,28 @@ class Board
   end
 
   def set_board
-    pieces = [0,1,6,7]
+    pieces = [1,6]
     # debugger
     @board = Array.new(8) { Array.new(8) }
     8.times do |row_index|
       8.times do |col_index|
         if pieces.include?(row_index)
-          @board[row_index][col_index] = Piece.new(" 😂 ",[row_index, col_index])
+          @board[row_index][col_index] = Pawn.new([row_index, col_index])
+        elsif row_index == 0 || row_index == 7
+          case col_index
+          when 0, 7
+            @board[row_index][col_index] = Rook.new([row_index, col_index])
+          when 1, 6
+            @board[row_index][col_index] = Knight.new([row_index, col_index])
+          when 2, 5
+            @board[row_index][col_index] = Bishop.new([row_index, col_index])
+          when 3
+            @board[row_index][col_index] = Queen.new([row_index, col_index])
+          else
+            @board[row_index][col_index] = King.new([row_index, col_index])
+          end
         else
-          @board[row_index][col_index] = NullPiece.new(" N ")
+          @board[row_index][col_index] = NullPiece.instance
         end
       end
     end
@@ -48,8 +67,3 @@ class Board
 end
 
 board = Board.new
-# p board[[0, 1]]
-
-a = [0,0]
-b = [3,4]
-p board.move(a,b)
