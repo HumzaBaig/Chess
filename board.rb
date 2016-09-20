@@ -25,7 +25,8 @@ class Board
       8.times do |col_index|
         color = row_index > 2 ? :light : :dark
         if pieces.include?(row_index)
-          @board[row_index][col_index] = Pawn.new([row_index, col_index], self, color)
+          # @board[row_index][col_index] = Pawn.new([row_index, col_index], self, color)
+            @board[row_index][col_index] = NullPiece.instance
         elsif row_index == 0 || row_index == 7
           case col_index
           when 0, 7
@@ -70,6 +71,6 @@ end
 
 a = Board.new
 
-b = a[[0,0]]
+b = a[[0, 1]]
 
-p b.moves(b.move_dirs)
+p b.moves(b.move_diffs)

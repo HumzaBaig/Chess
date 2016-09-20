@@ -17,10 +17,8 @@ module SlidingPiece
 
 
   def moves(move_dirs)
-    # debugger
     possible_moves = []
     move_dirs.each do |direction|
-      # debugger
       possible_moves += next_possible_moves(direction, self.pos)
     end
     possible_moves
@@ -43,7 +41,6 @@ module SlidingPiece
   end
 
   def check_color?(position)
-    # debugger
     self.color != self.board[position].color
   end
 end
