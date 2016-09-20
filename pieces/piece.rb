@@ -2,7 +2,7 @@
 
 class Piece
   attr_reader :piece, :color, :pos, :board
-  
+
   def initialize(piece, position, board, color)
     @piece = piece
     @pos = position
@@ -26,6 +26,18 @@ class Piece
 
   def moves
 
+  end
+
+  def valid_move?(position)
+    self.board.in_bounds?(position) && (is_empty?(position) || check_color?(position))
+  end
+
+  def is_empty?(position)
+    self.board[position].is_a?(NullPiece)
+  end
+
+  def check_color?(position)
+    self.color != self.board[position].color
   end
 
 end

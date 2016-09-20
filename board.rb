@@ -25,8 +25,7 @@ class Board
       8.times do |col_index|
         color = row_index > 2 ? :light : :dark
         if pieces.include?(row_index)
-          # @board[row_index][col_index] = Pawn.new([row_index, col_index], self, color)
-            @board[row_index][col_index] = NullPiece.instance
+          @board[row_index][col_index] = Pawn.new([row_index, col_index], self, color)
         elsif row_index == 0 || row_index == 7
           case col_index
           when 0, 7

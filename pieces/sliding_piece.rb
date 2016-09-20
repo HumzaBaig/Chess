@@ -28,19 +28,7 @@ module SlidingPiece
     next_position = [position[0] + direction[0], position[1] + direction[1]]
     return [] unless valid_move?(next_position)
 
-
     next_possible_moves_arr = [next_position] + next_possible_moves(direction, next_position)
   end
 
-  def valid_move?(position)
-    self.board.in_bounds?(position) && (is_empty?(position) || check_color?(position))
-  end
-
-  def is_empty?(position)
-    self.board[position].is_a?(NullPiece)
-  end
-
-  def check_color?(position)
-    self.color != self.board[position].color
-  end
 end
