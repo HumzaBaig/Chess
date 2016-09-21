@@ -70,6 +70,7 @@ end
 
 a = Board.new
 
-b = a[[0, 1]]
+b = a[[6, 1]]
 
-p b.moves(b.move_diffs)
+p b.regular_moves
+p b.diagonal_attacks
